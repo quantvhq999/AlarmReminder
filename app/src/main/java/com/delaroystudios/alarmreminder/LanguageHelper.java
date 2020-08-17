@@ -27,7 +27,6 @@ public class LanguageHelper {
         }
         return updateResourceLegacy(context,lang);
     }
-    @SuppressWarnings("deprecation")
     private static Context updateResourceLegacy(Context context, String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);

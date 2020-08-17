@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">AlarmReminder</string>
-    <string name="no_cardetails"></string>
+    <string name="no_cardetails">Click on the button below to begin creating your reminder!</string>
     <string name="title_activity_add_reminder">Add Reminder</string>
     <string name="title_activity_edit_reminder">Edit Reminder</string>
     <string name="title_activity_licenses">Licenses</string>
 
-    <string name="hello"></string>
 
     <string name="add_reminder">Reminder</string>
     <string name="details">Details</string>

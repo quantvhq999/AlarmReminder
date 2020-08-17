@@ -11,5 +11,6 @@
         </menu>
     </item>
     <item android:title="Add categories"/>
-    <item android:title="About"/>
+    <item android:id="@+id/btn_crash"
+        android:title="App not working?"/>
 </menu>

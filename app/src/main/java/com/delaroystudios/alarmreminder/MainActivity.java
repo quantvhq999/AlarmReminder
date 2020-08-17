@@ -1,13 +1,17 @@
 package com.delaroystudios.alarmreminder;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -39,16 +43,10 @@ import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private FloatingActionButton mAddReminderButton;
-    private FloatingActionButton mAlarmButton;
-
-
 
     private Toolbar mToolbar;
     AlarmCursorAdapter mCursorAdapter;
-    RelativeLayout layoutAlarm;
-    RelativeLayout layoutMain;
-    RelativeLayout layoutContent;
+
 
     AlarmReminderDbHelper alarmReminderDbHelper = new AlarmReminderDbHelper(this);
     ListView reminderListView;
@@ -57,10 +55,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView textView;
     private static final int VEHICLE_LOADER = 0;
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LanguageHelper.onAttach(newBase,"en"));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,19 +64,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-        textView = (TextView) findViewById(R.id.no_reminder);
-        Paper.init(this);
-        String language = Paper.book().read("language");
-        if (language == null){
-            Paper.book().write("language","vi");
+        SharedPreferences prefer = getSharedPreferences("prefer",MODE_PRIVATE);
+        boolean firstStart = prefer.getBoolean("firstStart",true);
+        if(firstStart){
+            showDialog();
         }
-        updateView((String)Paper.book().read("language"));
+
+        textView = (TextView) findViewById(R.id.no_reminder);
+
         reminderListView = (ListView) findViewById(R.id.list);
         View emptyView = findViewById(R.id.empty_view);
         reminderListView.setEmptyView(emptyView);
 
-        mAlarmButton = (FloatingActionButton) findViewById(R.id.fab2);
-
+        FloatingActionButton mAlarmButton = (FloatingActionButton) findViewById(R.id.fab2);
         mCursorAdapter = new AlarmCursorAdapter(this, null);
         reminderListView.setAdapter(mCursorAdapter);
 
@@ -103,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
 
-        mAddReminderButton = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton mAddReminderButton = (FloatingActionButton) findViewById(R.id.fab);
 
         mAddReminderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,13 +118,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
-    //Update view
-    private void updateView(String language) {
-        Context context = LanguageHelper.setLocate(this,language);
-        Resources resources = context.getResources();
-
-        textView.setText(resources.getString(R.string.no_cardetails));
-
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Lưu ý");
+        builder.setMessage("Đảm bảo ứng dụng đã được cho phép trong cài đặt để có thể hoạt động.");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
+        builder.setNegativeButton("Setting", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                dialog.dismiss();
+            }
+        }).create().show();
+        SharedPreferences prefer = getSharedPreferences("prefer",MODE_PRIVATE);
+        SharedPreferences.Editor  editor = prefer.edit();
+        editor.putBoolean("firstStart",false);
+        editor.apply();
     }
 
 
@@ -144,13 +152,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
       if(item.getItemId() == R.id.lang_en){
-          Paper.book().read("language","en");
-          updateView((String)Paper.book().read("language"));
-          Toast.makeText(this,"English",Toast.LENGTH_LONG).show();
+
+
       }else if(item.getItemId() == R.id.lang_vi){
-          Paper.book().read("language","vi");
-          updateView((String)Paper.book().read("language"));
-          Toast.makeText(this,"Việt Nam",Toast.LENGTH_LONG).show();
+
+
+      }else if (item.getItemId() == R.id.btn_crash){
+          showDialog();
       }
       return true;
     }
