@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@drawable/border_radius"
+    android:elevation="5dp"
     android:layout_height="86dp">
 
     <ImageView android:layout_width="40dp"
@@ -30,7 +31,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:layout_height="wrap_content"
-            android:textColor="@color/abc_primary_text_material_dark"
+            android:textColor="@color/mdtp_transparent_black"
             tools:text="Title"
             android:textSize="20sp"/>
 
@@ -41,7 +42,7 @@
             android:singleLine="true"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/abc_secondary_text_material_dark"
+            android:textColor="@color/mdtp_transparent_black"
             tools:text="Date and Time"/>
 
         <TextView
@@ -51,7 +52,7 @@
             android:singleLine="true"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/abc_secondary_text_material_dark"
+            android:textColor="@color/mdtp_transparent_black"
             tools:text="Repeat No and Type"/>
 
     </LinearLayout>

@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -50,7 +51,7 @@ public class ReminderAlarmService extends IntentService {
                 .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //Grab the task description
-        if(uri != null){
+        if (uri != null) {
             cursor = getContentResolver().query(uri, null, null, null, null);
         }
 
@@ -72,7 +73,8 @@ public class ReminderAlarmService extends IntentService {
                 .setContentIntent(operation)
                 .setAutoCancel(true)
                 .build();
-
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.chillies);
+        mediaPlayer.start();
         manager.notify(NOTIFICATION_ID, note);
     }
 }

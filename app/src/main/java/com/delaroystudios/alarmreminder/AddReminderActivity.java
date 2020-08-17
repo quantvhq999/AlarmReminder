@@ -1,5 +1,6 @@
 package com.delaroystudios.alarmreminder;
 
+import android.animation.Animator;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -7,9 +8,12 @@ import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +21,16 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +92,7 @@ public class AddReminderActivity extends AppCompatActivity implements
     private static final long milWeek = 604800000L;
     private static final long milMonth = 2592000000L;
 
+    private RelativeLayout layoutAddReminder;
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -95,6 +105,22 @@ public class AddReminderActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
+        overridePendingTransition(R.anim.animation, R.anim.animation);
+        //Animation
+        layoutAddReminder = (RelativeLayout) findViewById(R.id.layoutAddReminder);
+        final ViewTreeObserver viewTreeObserver = layoutAddReminder.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onGlobalLayout() {
+                    circularRevealActivity();
+                    layoutAddReminder.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+
+            });
+        }
 
         Intent intent = getIntent();
         mCurrentReminderUri = intent.getData();
@@ -206,13 +232,69 @@ public class AddReminderActivity extends AppCompatActivity implements
         }
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(R.string.title_activity_add_reminder);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
     }
 
+    //Animation
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void circularRevealActivity() {
+        int cx = layoutAddReminder.getRight() - getDips(0);
+        int cy = layoutAddReminder.getBottom() - getDips(110);
+
+        float finalRadius = Math.max(layoutAddReminder.getWidth(), layoutAddReminder.getHeight());
+        Animator circularReveal = ViewAnimationUtils.createCircularReveal(layoutAddReminder, cx, cy, 0, finalRadius);
+        circularReveal.setDuration(300);
+        circularReveal.start();
+
+    }
+
+    private int getDips(int dps) {
+        Resources resources = getResources();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dps, resources.getDisplayMetrics());
+    }
+    // On pressing the back button
+    @Override
+    public void onBackPressed() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            int cx = layoutAddReminder.getRight();
+            int cy = layoutAddReminder.getBottom();
+
+            float finalRadius = Math.max(layoutAddReminder.getWidth(), layoutAddReminder.getHeight());
+            Animator circularReveal = ViewAnimationUtils.createCircularReveal(layoutAddReminder, cx, cy, finalRadius, 0);
+
+            circularReveal.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    layoutAddReminder.setVisibility(View.GONE);
+                    finish();
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
+            circularReveal.setDuration(300);
+            circularReveal.start();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
     @Override
     protected void onSaveInstanceState (Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -233,7 +315,7 @@ public class AddReminderActivity extends AppCompatActivity implements
                 this,
                 now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE),
-                false
+                true
         );
         tpd.setThemeDark(false);
         tpd.show(getFragmentManager(), "Timepickerdialog");
@@ -604,12 +686,7 @@ public class AddReminderActivity extends AppCompatActivity implements
 
     }
 
-    // On pressing the back button
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
 
-    }
 
 
 

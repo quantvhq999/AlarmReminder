@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#6183ff"
     android:layout_height="match_parent"
     tools:context="com.delaroystudios.alarmreminder.MainActivity">
 
@@ -15,40 +16,61 @@
         app:contentInsetLeft="0dp"
         app:contentInsetStart="16dp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:background="?attr/colorPrimary" />
+        android:background="#6183ff" />
 
 
     <ListView
         android:id="@+id/list"
+        android:background="@drawable/top_border"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/empty_view"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
+        <ImageView
+            android:layout_width="195dp"
+            android:layout_height="224dp"
+            android:src="@drawable/img_empty" />
+
+        <TextView
+            android:id="@+id/no_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp" />
         <TextView
             android:id="@+id/no_reminder_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="16dp"
             android:gravity="center"
-            android:text="@string/no_cardetails"/>
-    </RelativeLayout>
+            android:padding="16dp" />
+    </LinearLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_timer"
+        app:backgroundTint="#ffc72e"
+        app:fabSize="normal"/>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="#fc0345"
         app:fabSize="normal"/>
 
 </RelativeLayout>

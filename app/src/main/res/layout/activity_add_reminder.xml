@@ -3,7 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/layoutAddReminder"
+    android:background="@color/mdtp_white"
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
@@ -15,39 +18,48 @@
         app:contentInsetLeft="0dp"
         app:contentInsetStart="16dp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:background="?attr/colorPrimary" />
+        android:background="#6183ff" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/wap"
+        android:background="@drawable/bottom__border"
         android:layout_below="@+id/toolbar"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:id="@+id/add_reminder_layout_top"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="148dp">
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:id="@+id/reminder_title"
-            android:layout_marginLeft="72dp"
-            android:hint="@string/add_reminder"
-            android:textSize="25dp"
-            android:lines="4"
-            android:minLines="4"
-            android:gravity="top|left"
-            android:textColor="@android:color/white"
-            android:scrollHorizontally="false"
-            android:textColorHint="@color/primary_text_disabled_material_dark"
-            android:inputType="textCapWords|textMultiLine"
-            android:layout_marginRight="16dp"
-            android:layout_height="140dp"/>
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:id="@+id/add_reminder_layout_top"
 
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_height="148dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:id="@+id/reminder_title"
+                android:layout_marginStart="72dp"
+                android:hint="@string/add_reminder"
+                android:textSize="25sp"
+                android:lines="4"
+                android:minLines="4"
+                android:gravity="top|left"
+                android:textColor="@android:color/white"
+                android:scrollHorizontally="false"
+                android:textColorHint="@color/primary_text_disabled_material_dark"
+                android:inputType="textCapWords|textMultiLine"
+                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"
+                tools:ignore="PrivateResource" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_below="@id/add_reminder_layout_top"
+        android:background="@color/mdtp_white"
+        android:layout_below="@id/wap"
         android:layout_height="fill_parent">
 
         <LinearLayout
@@ -60,10 +72,10 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/details"
                 android:id="@+id/details"
-                android:textSize="15dp"
+                android:textSize="18sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="72dp"
-                android:textColor="@color/abc_secondary_text_material_dark"
+                android:textColor="@color/mdtp_dark_gray"
                 android:layout_height="72dp"/>
 
             <RelativeLayout
@@ -76,12 +88,12 @@
 
                 <ImageView
                     android:id="@+id/date_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@drawable/ic_view_day_grey600_24dp"
+                    android:src="@drawable/ic_calendar"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -93,17 +105,17 @@
 
                     <TextView
                         android:id="@+id/date_text"
-                        android:textColor="@color/abc_primary_text_material_dark"
+                        android:textColor="#1a1a1a"
                         android:layout_width="wrap_content"
-                        android:textSize="15dp"
+                        android:textSize="18sp"
                         android:layout_height="wrap_content"
                         android:text="@string/date" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/set_date"
-                        android:textSize="15dp"
-                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="18sp"
+                        android:textColor="#999999"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -120,12 +132,12 @@
 
                 <ImageView
                     android:id="@+id/time_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@drawable/ic_access_time_grey600_24dp"
+                    android:src="@drawable/ic_clock"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -137,17 +149,16 @@
 
                     <TextView
                         android:id="@+id/time_text"
-                        android:textColor="@color/abc_primary_text_material_dark"
-                        android:layout_width="wrap_content"
-                        android:textSize="15dp"
+                        android:textColor="#1a1a1a"                        android:layout_width="wrap_content"
+                        android:textSize="18sp"
                         android:layout_height="wrap_content"
                         android:text="@string/time" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/set_time"
-                        android:textSize="15dp"
-                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="18sp"
+                        android:textColor="#999999"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -161,12 +172,12 @@
 
                 <ImageView
                     android:id="@+id/repeat_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@drawable/ic_sync_grey600_24dp"
+                    android:src="@drawable/ic_rotate"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -179,17 +190,17 @@
 
                     <TextView
                         android:id="@+id/repeat_text"
-                        android:textColor="@color/abc_primary_text_material_dark"
+                        android:textColor="#1a1a1a"
                         android:layout_width="wrap_content"
-                        android:textSize="15dp"
+                        android:textSize="18sp"
                         android:layout_height="wrap_content"
                         android:text="@string/repeat" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/set_repeat"
-                        android:textSize="15dp"
-                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="18sp"
+                        android:textColor="#999999"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -222,9 +233,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="22dp"
                     android:layout_marginRight="32dp"
-                    android:src="@drawable/ic_unfold_more_grey600_24dp"
+                    android:src="@drawable/ic_rotate_count"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -236,17 +247,17 @@
 
                     <TextView
                         android:id="@+id/repeat_no_text"
-                        android:textColor="@color/abc_primary_text_material_dark"
+                        android:textColor="#1a1a1a"
                         android:layout_width="wrap_content"
-                        android:textSize="15dp"
+                        android:textSize="18sp"
                         android:layout_height="wrap_content"
                         android:text="@string/repeat_no" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:id="@+id/set_repeat_no"
-                        android:textSize="15dp"
-                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:textSize="18sp"
+                        android:textColor="#999999"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
@@ -259,16 +270,17 @@
                 android:clickable="true"
                 android:onClick="selectRepeatType"
                 android:background="?android:attr/selectableItemBackground"
-                android:layout_height="72dp">
+                android:layout_height="72dp"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/repeat_type_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="32dp"
-                    android:src="@drawable/ic_subject_grey600_24dp"
+                    android:src="@drawable/ic_time_type"
                     android:layout_centerVertical="true" />
 
                 <LinearLayout
@@ -279,33 +291,74 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/repeat_type_text"
-                        android:textColor="@color/abc_primary_text_material_dark"
+                        android:id="@+id/repeat_type_textt"
+                        android:textColor="#1a1a1a"
                         android:layout_width="wrap_content"
-                        android:textSize="15dp"
+                        android:textSize="18sp"
                         android:layout_height="wrap_content"
                         android:text="@string/repeat_type" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:id="@+id/set_repeat_type"
-                        android:textSize="15dp"
-                        android:textColor="@color/abc_secondary_text_material_dark"
+                        android:id="@+id/set_repeat_typee"
+                        android:textSize="18sp"
+                        android:textColor="#999999"
                         android:layout_height="wrap_content"/>
 
                 </LinearLayout>
 
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/RepeatTypee"
+                android:clickable="true"
+                android:onClick="selectRepeatType"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_height="72dp">
 
+                <ImageView
+                    android:id="@+id/repeat_type_iconn"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="32dp"
+                    android:src="@drawable/ic_categories"
+                    android:layout_centerVertical="true" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/repeat_type_iconn"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/repeat_type_text"
+                        android:textColor="#1a1a1a"
+                        android:layout_width="wrap_content"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content"
+                        android:text="Categories" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/set_repeat_type"
+                        android:textSize="18sp"
+                        android:textColor="@color/mdtp_dark_gray"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
         </LinearLayout>
 
     </ScrollView>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/add_reminder_layout_top"
-        android:background="@drawable/toolbar_dropshadow" />
+        android:layout_height="0dp"
+        android:layout_below="@+id/wap"/>
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/starred1"

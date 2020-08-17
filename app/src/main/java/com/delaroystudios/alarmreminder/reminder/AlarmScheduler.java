@@ -2,7 +2,9 @@ package com.delaroystudios.alarmreminder.reminder;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 
@@ -10,7 +12,7 @@ import android.os.Build;
  * Created by delaroy on 9/22/17.
  */
 
-public class AlarmScheduler {
+public class AlarmScheduler  {
 
     /**
      * Schedule a reminder alarm at the specified time for the given task.
@@ -62,5 +64,6 @@ public class AlarmScheduler {
         manager.cancel(operation);
 
     }
+
 
 }
