@@ -105,8 +105,6 @@ public class AddReminderActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
-        overridePendingTransition(R.anim.animation, R.anim.animation);
-        //Animation
         layoutAddReminder = (RelativeLayout) findViewById(R.id.layoutAddReminder);
         final ViewTreeObserver viewTreeObserver = layoutAddReminder.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
@@ -115,7 +113,6 @@ public class AddReminderActivity extends AppCompatActivity implements
                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void onGlobalLayout() {
-                    circularRevealActivity();
                     layoutAddReminder.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
 
@@ -239,62 +236,6 @@ public class AddReminderActivity extends AppCompatActivity implements
 
     }
 
-    //Animation
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void circularRevealActivity() {
-        int cx = layoutAddReminder.getRight() - getDips(0);
-        int cy = layoutAddReminder.getBottom() - getDips(110);
-
-        float finalRadius = Math.max(layoutAddReminder.getWidth(), layoutAddReminder.getHeight());
-        Animator circularReveal = ViewAnimationUtils.createCircularReveal(layoutAddReminder, cx, cy, 0, finalRadius);
-        circularReveal.setDuration(300);
-        circularReveal.start();
-
-    }
-
-    private int getDips(int dps) {
-        Resources resources = getResources();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dps, resources.getDisplayMetrics());
-    }
-    // On pressing the back button
-    @Override
-    public void onBackPressed() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            int cx = layoutAddReminder.getRight();
-            int cy = layoutAddReminder.getBottom();
-
-            float finalRadius = Math.max(layoutAddReminder.getWidth(), layoutAddReminder.getHeight());
-            Animator circularReveal = ViewAnimationUtils.createCircularReveal(layoutAddReminder, cx, cy, finalRadius, 0);
-
-            circularReveal.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    layoutAddReminder.setVisibility(View.GONE);
-                    finish();
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animator) {
-
-                }
-            });
-            circularReveal.setDuration(300);
-            circularReveal.start();
-        }
-        else {
-            super.onBackPressed();
-        }
-    }
     @Override
     protected void onSaveInstanceState (Bundle outState) {
         super.onSaveInstanceState(outState);

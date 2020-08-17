@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.delaroystudios.alarmreminder.data.AlarmReminderContract;
 import com.delaroystudios.alarmreminder.data.AlarmReminderDbHelper;
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Context context = LanguageHelper.setLocate(this,language);
         Resources resources = context.getResources();
 
-        textView.setText(resources.getString(R.string.hello));
+        textView.setText(resources.getString(R.string.no_cardetails));
 
     }
 
@@ -145,9 +146,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
       if(item.getItemId() == R.id.lang_en){
           Paper.book().read("language","en");
           updateView((String)Paper.book().read("language"));
+          Toast.makeText(this,"English",Toast.LENGTH_LONG).show();
       }else if(item.getItemId() == R.id.lang_vi){
           Paper.book().read("language","vi");
           updateView((String)Paper.book().read("language"));
+          Toast.makeText(this,"Việt Nam",Toast.LENGTH_LONG).show();
       }
       return true;
     }
