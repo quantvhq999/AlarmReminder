@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlarmReminder.iml" filepath="$PROJECT_DIR$/.idea/modules/AlarmReminder.iml" group="AlarmReminder" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AlarmReminder.iml" filepath="$PROJECT_DIR$/.idea/AlarmReminder.iml" group="AlarmReminder" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="AlarmReminder/app" />
     </modules>
   </component>

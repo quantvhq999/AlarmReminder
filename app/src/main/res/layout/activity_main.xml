@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#6183ff"
+    android:background="@color/blue_upper"
     android:layout_height="match_parent"
     tools:context="com.delaroystudios.alarmreminder.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="16dp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:background="#6183ff" />
+        android:background="@color/blue_upper" />
 
 
     <ListView
         android:id="@+id/list"
-        android:background="@drawable/top_border"
+        android:background="@color/blue_upper"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -40,6 +40,7 @@
 
         <TextView
             android:id="@+id/no_reminder"
+            android:textColor="@color/red"
             android:text="@string/no_cardetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,18 +57,17 @@
         android:layout_alignParentStart="true"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_timer"
-        app:backgroundTint="#ffc72e"
+        app:backgroundTint="#f8444f"
         app:fabSize="normal"/>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_add"
-        app:backgroundTint="#fc0345"
+        app:backgroundTint="#f8444f"
         app:fabSize="normal"/>
 
 </RelativeLayout>

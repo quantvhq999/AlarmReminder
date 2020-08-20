@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Paint;
 import android.icu.util.LocaleData;
 import android.net.Uri;
 import android.os.Build;
@@ -25,19 +26,24 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.delaroystudios.alarmreminder.data.AlarmReminderContract;
 import com.delaroystudios.alarmreminder.data.AlarmReminderDbHelper;
+
+import java.lang.reflect.Field;
 
 import io.paperdb.Paper;
 
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private Toolbar mToolbar;
     AlarmCursorAdapter mCursorAdapter;
+
 
 
     AlarmReminderDbHelper alarmReminderDbHelper = new AlarmReminderDbHelper(this);
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if(firstStart){
             showDialog();
         }
+
 
         textView = (TextView) findViewById(R.id.no_reminder);
 
@@ -112,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AlarmActivity.class));
+                startActivity(new Intent(MainActivity.this, RoutesActivity.class));
             }
         });
 
@@ -127,14 +135,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).create().show();
+        });
         builder.setNegativeButton("Setting", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
                 dialog.dismiss();
             }
-        }).create().show();
+        });
+        builder.show();
         SharedPreferences prefer = getSharedPreferences("prefer",MODE_PRIVATE);
         SharedPreferences.Editor  editor = prefer.edit();
         editor.putBoolean("firstStart",false);

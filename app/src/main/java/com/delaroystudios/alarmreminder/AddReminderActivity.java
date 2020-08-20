@@ -44,9 +44,6 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
-/**
- * Created by delaroy on 10/26/17.
- */
 
 public class AddReminderActivity extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,
@@ -395,10 +392,7 @@ public class AddReminderActivity extends AppCompatActivity implements
         return true;
     }
 
-    /**
-     * This method is called after invalidateOptionsMenu(), so that the
-     * menu can be updated (some menu items can be hidden or made visible).
-     */
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);

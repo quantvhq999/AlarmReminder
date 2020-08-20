@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#6183ff</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="fab_pressed">#546e7a</color>
     <color name="fab2_pressed">#ffc72e</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="blue_upper">#012c3d</color>
+    <color name="blue">#3b5998</color>
+    <color name="red">#f8444f</color>
+    <color name="transparent">#f7f8f3</color>
+    <color name="blue_blue">#4a9bbb</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="orange">#FF9900</color>
+    <color name="black">#f000</color>
+    <color name="white">#ffff</color>
+    <color name="green">#00CC00</color>
 </resources>

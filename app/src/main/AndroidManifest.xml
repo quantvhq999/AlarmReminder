@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
 
@@ -17,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AlarmActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +50,23 @@
         <service
             android:name=".reminder.ReminderAlarmService"
             android:enabled="true" />
+        <activity android:name=".RoutesActivity">
+        </activity>
+        <activity android:name=".RecordVideoActivity" />
+
+        <service
+            android:name=".Service.AlarmService"
+            android:enabled="true" />
+
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".AlarmSelectionActivity" />
+        <activity
+            android:name=".NewRouteActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".TimeRemain" />
+        <activity android:name=".ChildActivity" />
+        <activity android:name=".PassengerManagerActivity"></activity>
     </application>
 
 </manifest>

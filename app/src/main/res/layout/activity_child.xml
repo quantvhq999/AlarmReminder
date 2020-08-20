@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".ChildActivity">
+    <LinearLayout
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/blue_upper"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="28"
+            android:layout_marginLeft="15dp"
+            android:gravity="left|center">
+
+            <TextView
+                android:layout_margin="10dp"
+                android:textSize="15sp"
+                android:background="@drawable/button_border2"
+                android:onClick="backActivity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:layout_weight="40"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_title_child"
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Child"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="28"
+            android:gravity="left">
+
+            <TextView
+                android:layout_margin="10dp"
+                android:textSize="15sp"
+                android:onClick="addOrUpdateChild"
+                android:background="@drawable/button_border"
+                android:id="@+id/tv_add_child"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Save"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="91"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10">
+
+        </LinearLayout>
+        <FrameLayout
+            android:onClick="chooseImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imgChild"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/circle_shape"
+                />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/img_add"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/add_routes" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="91"
+            android:gravity="center|top"
+            android:orientation="vertical"
+            android:weightSum="100">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10">
+            </LinearLayout>
+            <EditText
+                android:id="@+id/edt_child_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="20"
+                android:gravity="center"
+                android:hint="Child name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center|bottom"
+                android:layout_weight="60"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <ImageButton
+                    android:onClick="addOrUpdateChild"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/add_routes" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Task Reminder</string>
+    <string name="no_cardetails">Bấm vào nút phía dưới bên phải để tạo nhắc nhở mới!</string>
+    <string name="cancel">Hủy</string>
+    <string name="title_activity_add_reminder">Thêm nhắc nhở</string>
+    <string name="editor_activity_title_new_reminder">Nội dung nhắc nhở</string>
+    <string name="date">Ngày</string>
+    <string name="delete">Xóa</string>
+    <string name="details">Chi tiết</string>
+    <string name="time">Thời gian</string>
+</resources>
