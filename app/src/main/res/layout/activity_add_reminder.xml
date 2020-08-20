@@ -215,7 +215,7 @@
                     android:layout_marginLeft="8dp"
                     android:onClick="onSwitchRepeat"
                     android:checked="true"
-                    android:theme="@style/SCBSwitch"
+
                     android:textOn="On"
                     android:textOff="Off"/>
 
