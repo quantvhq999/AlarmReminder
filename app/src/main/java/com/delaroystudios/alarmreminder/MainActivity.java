@@ -17,6 +17,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.icu.util.LocaleData;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -42,6 +43,7 @@ import android.widget.Toast;
 
 import com.delaroystudios.alarmreminder.data.AlarmReminderContract;
 import com.delaroystudios.alarmreminder.data.AlarmReminderDbHelper;
+import com.delaroystudios.alarmreminder.reminder.ReminderAlarmService;
 
 import java.lang.reflect.Field;
 
@@ -160,14 +162,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-      if(item.getItemId() == R.id.lang_en){
-
-
-      }else if(item.getItemId() == R.id.lang_vi){
-
-
-      }else if (item.getItemId() == R.id.btn_crash){
-          showDialog();
+      switch (item.getItemId()){
+          case R.id.lang_en:{
+              Toast.makeText(this,"English",Toast.LENGTH_SHORT).show();
+              break;
+          }
+          case R.id.lang_vi:{
+              Toast.makeText(this,"Việt Nam",Toast.LENGTH_SHORT).show();
+              break;
+          }
+          case R.id.btn_crash: {
+              showDialog();
+          }
       }
       return true;
     }

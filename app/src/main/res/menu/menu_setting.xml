@@ -10,7 +10,22 @@
                 android:title="Tiếng Việt"/>
         </menu>
     </item>
-    <item android:title="Add categories"/>
+    <item
+        android:id="@+id/btn_ringtone"
+        android:title="Select ringtone">
+        <menu>
+            <item android:id="@+id/ring1"
+                android:title="English"/>
+            <item android:id="@+id/ring2"
+                android:title="Tiếng Việt"/>
+            <item android:id="@+id/ring3"
+                android:title="English"/>
+            <item android:id="@+id/ring4"
+                android:title="Tiếng Việt"/>
+            <item android:id="@+id/ring5"
+                android:title="Tiếng Việt"/>
+        </menu>
+    </item>
     <item android:id="@+id/btn_crash"
         android:title="App not working?"/>
 </menu>

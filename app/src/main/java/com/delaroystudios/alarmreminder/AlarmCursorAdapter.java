@@ -2,6 +2,7 @@ package com.delaroystudios.alarmreminder;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.delaroystudios.alarmreminder.data.AlarmReminderContract;
+import com.delaroystudios.alarmreminder.reminder.ReminderAlarmService;
 
 /**
  * Created by delaroy on 10/27/17.

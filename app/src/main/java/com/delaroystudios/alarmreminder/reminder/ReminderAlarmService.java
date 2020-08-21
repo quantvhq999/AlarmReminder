@@ -1,5 +1,6 @@
 package com.delaroystudios.alarmreminder.reminder;
 
+import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,8 +10,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.widget.ImageView;
 
 import com.delaroystudios.alarmreminder.AddReminderActivity;
 import com.delaroystudios.alarmreminder.R;
@@ -39,7 +42,6 @@ public class ReminderAlarmService extends IntentService {
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Uri uri = intent.getData();
-
         //Display a notification to view the task details
         Intent action = new Intent(this, AddReminderActivity.class);
         action.setData(uri);
@@ -62,7 +64,6 @@ public class ReminderAlarmService extends IntentService {
                 cursor.close();
             }
         }
-
         Notification note = new NotificationCompat.Builder(this)
                 .setContentTitle(getString(R.string.reminder_title))
                 .setContentText(description)
@@ -70,7 +71,11 @@ public class ReminderAlarmService extends IntentService {
                 .setContentIntent(operation)
                 .setAutoCancel(true)
                 .build();
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.chillies);
+
+        PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
+        @SuppressLint("InvalidWakeLockTag") PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
+        wakeLock.acquire(10*60*1000L /*10 minutes*/);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.ringtone);
         mediaPlayer.start();
         manager.notify(NOTIFICATION_ID, note);
     }
